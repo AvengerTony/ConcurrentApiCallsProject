@@ -12,10 +12,12 @@ import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import com.hcl.concurrentapicalls.api.ApiBean
 import com.hcl.concurrentapicalls.api.ApiHelper
+import com.hcl.concurrentapicalls.api.BASE_URL
 import com.hcl.concurrentapicalls.api.RetrofitBuilder
 import com.hcl.concurrentapicalls.utils.ApiResponse
 import com.hcl.concurrentapicalls.utils.RequestKey
 import com.hcl.concurrentapicalls.utils.RequestType
+import com.hcl.concurrentapicalls.utils.RequestTypeMoreDetail
 import com.hcl.retrofit.coroutines.R
 import com.hcl.retrofit.coroutines.data.model.User
 import com.hcl.retrofit.coroutines.ui.base.ViewModelFactory
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
 
 
     private fun setupViewModel() {
-        RetrofitBuilder.BASE_URL="https://5e510330f2c0d300147c034c.mockapi.io/"
+        BASE_URL="https://6319f70d8e51a64d2bf1e612.mockapi.io/"
         viewModel = ViewModelProvider(
             this,
             ViewModelFactory(this, ApiHelper(RetrofitBuilder.apiService))
@@ -64,45 +66,53 @@ class MainActivity : AppCompatActivity(), ApiResponse {
     private fun setupObservers() {
 
         val apiMap = mutableMapOf<RequestKey, ApiBean>()
-
+        val queryMap = mapOf("page" to "1", "limit" to "10")
         apiMap[RequestKey.REQUEST_FIRST] = ApiBean(
-            requestType = RequestType.GET, endPoint = "users",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            requestType = RequestType.GET,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT,
+            endPoint = "users",
+            url = null,
+            id = null,
+            queryParam =null,
+            bodyJsonObject = null,
+            bodyJsonArray = null,
+            resultOfApi = null
         )
         apiMap[RequestKey.REQUEST_SECOND] = ApiBean(
-            requestType = RequestType.GET, endPoint = "users",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            requestType = RequestType.GET,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT,
+            endPoint = "blogs",
+            url = null,
+            id = null,
+            queryParam =null,
+            bodyJsonObject = null,
+            bodyJsonArray = null,
+            resultOfApi = null
         )
         apiMap[RequestKey.REQUEST_THIRD] = ApiBean(
-            requestType = RequestType.GET, endPoint = "users",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            requestType = RequestType.GET,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT,
+            endPoint = "users",
+            url = null,
+            id = null,
+            queryParam =queryMap,
+            bodyJsonObject = null,
+            bodyJsonArray = null,
+            resultOfApi = null
         )
         apiMap[RequestKey.REQUEST_FOURTH] = ApiBean(
-            requestType = RequestType.GET, endPoint = "users",
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
+            requestType = RequestType.GET,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT,
+            endPoint = "users",
+            url = null,
+            id = null,
+            queryParam =null,
+            bodyJsonObject = null,
+            bodyJsonArray = null,
+            resultOfApi = null
         )
 
-        viewModel.doSomeAPICalls(apiMap)
+        viewModel.doMultipleAPICalls(apiMap)
         /* .observe(this, Observer {
          it?.let { resource ->
              when (resource.status) {

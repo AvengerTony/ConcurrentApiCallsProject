@@ -41,6 +41,7 @@ class MainRepository(private val apiHelper: ApiHelper) {
                             RequestType.MULTIPART -> {
 
                             }
+                            RequestType.PUT -> TODO()
                         }
                     }
 

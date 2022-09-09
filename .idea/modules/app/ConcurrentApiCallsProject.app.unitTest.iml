@@ -14,7 +14,9 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
+                <arg>$MODULE_DIR$/../../../app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/e3977bab85ae32f6cc70527db0f58bbb/transformed/jetified-kotlin-android-extensions-runtime-1.7.10.jar</arg>
+                <arg>$MODULE_DIR$/../../../concurrentapicalls/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/4f27ff7be349d71bd5662024be8d1ca8/transformed/jetified-lifecycle-viewmodel-ktx-2.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/533580e5ac85e6d0e48ce1c3e8258e79/transformed/jetified-lifecycle-runtime-ktx-2.5.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/c70bc039b37e11a92cda398c159174af/transformed/appcompat-1.5.0-api.jar</arg>

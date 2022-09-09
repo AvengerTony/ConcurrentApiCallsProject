@@ -31,7 +31,7 @@ class MainViewModel(
           }
       }*/
 
-    fun doSomeAPICalls(apiCallList: Map<RequestKey, ApiBean>)
+    fun doMultipleAPICalls(apiCallList: Map<RequestKey, ApiBean>)
     //= liveData(Dispatchers.IO)
     {
         // mContext = this@liveData
