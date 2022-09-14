@@ -48,9 +48,9 @@ class MainRepository(private val apiHelper: ApiHelper) {
                                          RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_PATH -> {
                                                 apiHelper.getApiCallWithEndPointNPath(apiBean)
                                             }
-                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT -> {
-                                                apiHelper.postApiCallWithEndPont(apiBean)
-                                            }
+
+                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSON -> TODO()
+                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP -> TODO()
                                         }
 
                                     }
@@ -62,7 +62,23 @@ class MainRepository(private val apiHelper: ApiHelper) {
                             RequestType.POST -> {
                                 val time1 = measureTimeMillis {
                                     val results = async {
-                                        apiHelper.getApiCall()
+                                        when (apiBean.requestTypeMoreDetail) {
+                                            RequestTypeMoreDetail.GET_CALL_SIMPLE -> TODO()
+                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT ->TODO()
+                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP ->TODO()
+                                            RequestTypeMoreDetail.GET_CALL_ONLY_QUERYMAP -> TODO()
+                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_PATH -> TODO()
+
+                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSON ->
+                                            {
+                                                apiHelper.postApiCallWithEndPontNJsonBody(apiBean)
+                                            }
+                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP ->
+                                            {
+                                                apiHelper.postApiCallWithEndPontNFieldMap(apiBean)
+                                            }
+                                        }
+
                                     }
                                     response[key] = results
                                 }

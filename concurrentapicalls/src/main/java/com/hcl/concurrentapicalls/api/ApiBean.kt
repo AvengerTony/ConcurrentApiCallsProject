@@ -14,7 +14,7 @@ data class ApiBean(
     val url: String?,
     val requesPathString: String?,
     val queryParam: Map<String, String>?,
-    val bodyJsonObject: JSONObject?,
+    val bodyJsonObject: JsonObject?,
     val bodyJsonArray: JsonArray?,
     var resultOfApi: JsonElement?
 )

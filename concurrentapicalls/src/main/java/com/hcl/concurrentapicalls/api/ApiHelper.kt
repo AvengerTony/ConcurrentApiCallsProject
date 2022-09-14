@@ -1,7 +1,6 @@
 package com.hcl.concurrentapicalls.api
 
 import com.google.gson.JsonElement
-import com.hcl.concurrentapicalls.utils.RequestTypeMoreDetail
 
 
 class ApiHelper(private val apiService: ApiService) {
@@ -16,7 +15,10 @@ class ApiHelper(private val apiService: ApiService) {
 
     suspend fun getApiCallOnlyWithQueryMap(apiBean: ApiBean) = apiService.getApiCallWithParamQueryMap(queryMap = apiBean.queryParam!!)
 
-    fun postApiCallWithEndPont(apiBean: ApiBean) =
-        apiService.postApiCallWithEndPont(endPoint = apiBean.endPoint!!, body = null)
+    suspend fun postApiCallWithEndPontNJsonBody(apiBean: ApiBean) =
+        apiService.postApiCallWithEndPontNJsonBody(endPoint = apiBean.endPoint!!, body = apiBean.bodyJsonObject!! as JsonElement)
+
+    suspend fun postApiCallWithEndPontNFieldMap(apiBean: ApiBean) =
+        apiService.postApiCallWithEndPontNFieldMap(endPoint = apiBean.endPoint!!, fieldMap = apiBean.queryParam!!)
 
 }

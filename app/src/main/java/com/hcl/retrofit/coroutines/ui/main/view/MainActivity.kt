@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.JsonElement
+import com.google.gson.JsonObject
 import com.hcl.concurrentapicalls.api.ApiBean
 import com.hcl.concurrentapicalls.api.ApiHelper
 import com.hcl.concurrentapicalls.api.BASE_URL
@@ -40,12 +41,13 @@ class MainActivity : AppCompatActivity(), ApiResponse {
 
     private fun setupViewModel() {
         BASE_URL = "https://6319f70d8e51a64d2bf1e612.mockapi.io/"  //Add Base URL
+        //BASE_URL = "https://reqres.in/"  //Add Base URL
 
         //Add Headers if require
         val headerMap= "Accept: application/json\n" +
                "User-Agent: Your-App-Name\n" +
                "Cache-Control: max-age=640000"
-        RetrofitBuilder.setHeader(headerMap)
+        //RetrofitBuilder.setHeader(headerMap)
 
         //Initializing retrofit ViewModel
         viewModel = ViewModelProvider(
@@ -85,6 +87,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             bodyJsonArray = null,
             resultOfApi = null
         )
+
 
         //Get Api with different endPoint if is not then we can pass empty as well
         apiMap[RequestKey.REQUEST_SECOND] = ApiBean(
@@ -126,24 +129,40 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             resultOfApi = null
         )
 
-        val jsonObject = JSONObject()
-        jsonObject.put("name", "Vinay")
-        jsonObject.put("email", "vinay@gmail.com")
+
+        val jsonObject = JsonObject()
+        jsonObject.addProperty("name", "Vinay")
+        jsonObject.addProperty("job", "engineer")
 
         apiMap[RequestKey.REQUEST_FIFTH] = ApiBean(
             requestType = RequestType.POST,
-            requestTypeMoreDetail = RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT,
-            endPoint = "users",
+            requestTypeMoreDetail = RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSON,
+            endPoint = "https://reqres.in/api/users",
             url = null,
             requesPathString = null,
-            queryParam = queryMap,
+            queryParam = null,
             bodyJsonObject = jsonObject,
+            bodyJsonArray = null,
+            resultOfApi = null
+        )
+        val jsonObject2 = JsonObject()
+        jsonObject2.addProperty("email", "eve.holt@reqres.in")
+        //jsonObject2.addProperty("password", "pistol")
+        val fieldMap = mapOf("email" to "eve.holt@reqres.in", "password" to "pistol")
+ apiMap[RequestKey.REQUEST_SIX] = ApiBean(
+            requestType = RequestType.POST,
+            requestTypeMoreDetail = RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP,
+            endPoint = "https://reqres.in/api/register",
+            url = null,
+            requesPathString = null,
+            queryParam = fieldMap,
+            bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
         )
 
 
-        viewModel.doMultipleAPICalls(apiMap)
+               viewModel.doMultipleAPICalls(apiMap)
         /* .observe(this, Observer {
          it?.let { resource ->
              when (resource.status) {
@@ -191,7 +210,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun retrieveList(listWithResponse: Map<RequestKey, ApiBean>) {
-        val data = toRpcResult(listWithResponse[RequestKey.REQUEST_SECOND]?.resultOfApi)
+        val data = toRpcResult(listWithResponse[RequestKey.REQUEST_SIX]?.resultOfApi)
         /*if (data != null && data is List<*>) {
             jsonData.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
@@ -208,7 +227,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
        // }
     }
 
-    private fun toRpcResult(json: JsonElement?): Any? {
+    private fun toRpcResult(json: JsonElement?): JsonElement? {
         /* try {
             val collectionType: Type = object : TypeToken<List<User?>?>() {}.type
              return  Gson().fromJson(json, collectionType)
