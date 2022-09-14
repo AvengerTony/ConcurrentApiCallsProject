@@ -130,9 +130,9 @@ class MainActivity : AppCompatActivity(), ApiResponse {
         jsonObject.put("name", "Vinay")
         jsonObject.put("email", "vinay@gmail.com")
 
-        apiMap[RequestKey.REQUEST_FOURTH] = ApiBean(
-            requestType = RequestType.GET,
-            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP,
+        apiMap[RequestKey.REQUEST_FIFTH] = ApiBean(
+            requestType = RequestType.POST,
+            requestTypeMoreDetail = RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT,
             endPoint = "users",
             url = null,
             requesPathString = null,
@@ -192,7 +192,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
     @SuppressLint("NotifyDataSetChanged")
     private fun retrieveList(listWithResponse: Map<RequestKey, ApiBean>) {
         val data = toRpcResult(listWithResponse[RequestKey.REQUEST_SECOND]?.resultOfApi)
-        if (data != null && data is List<*>) {
+        /*if (data != null && data is List<*>) {
             jsonData.visibility = View.GONE
             recyclerView.visibility = View.VISIBLE
 
@@ -201,11 +201,11 @@ class MainActivity : AppCompatActivity(), ApiResponse {
                 notifyDataSetChanged()
             }
 
-        } else {
+        } else {*/
             jsonData.visibility = View.VISIBLE
             recyclerView.visibility = View.GONE
             jsonData.text = data.toString()
-        }
+       // }
     }
 
     private fun toRpcResult(json: JsonElement?): Any? {

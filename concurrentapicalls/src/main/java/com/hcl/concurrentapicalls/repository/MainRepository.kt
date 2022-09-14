@@ -48,6 +48,9 @@ class MainRepository(private val apiHelper: ApiHelper) {
                                          RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_PATH -> {
                                                 apiHelper.getApiCallWithEndPointNPath(apiBean)
                                             }
+                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT -> {
+                                                apiHelper.postApiCallWithEndPont(apiBean)
+                                            }
                                         }
 
                                     }
