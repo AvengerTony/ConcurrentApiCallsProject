@@ -18,12 +18,15 @@ object RetrofitBuilder {
             .addConverterFactory(GsonConverterFactory.create())
             .also {
                 if (headers != null)
-                    it.client(addIntercepterandHeader(headers = headers!!))
+                    it.client(addIntercepterandHeader(headers = Headers.headersOf(
+                           headers!!
+                        )
+                    ))
             }
             .build()
     }
 
-    private fun setHeader(headers: Headers?) {
+    fun setHeader(headers:String) {
         this.headers = headers
     }
 
@@ -44,7 +47,7 @@ object RetrofitBuilder {
 
     }
 
-    private var headers: Headers? = null
+    private var headers:String? = null
 
 
 

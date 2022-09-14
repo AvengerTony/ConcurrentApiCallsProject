@@ -38,7 +38,7 @@ class MainViewModel(
         // emit(Resource.loading(data = null))
         apiResponseListner.onLoadingApiResult()
         CoroutineScope(Dispatchers.IO).launch {
-            mainRepository.returnSomeItems(apiCallList = apiCallList) { resultOfCalls ->
+            mainRepository.returnApiResults(apiCallList = apiCallList) { resultOfCalls ->
                 Log.i("resultOfCalls", resultOfCalls.toString())
                 // withContext(Dispatchers.Default){ emit(Resource.success(data = resultOfCalls))}
                 //viewModelScope.launch {
