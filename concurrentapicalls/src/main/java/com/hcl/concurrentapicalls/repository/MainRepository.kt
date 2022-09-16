@@ -30,27 +30,26 @@ class MainRepository(private val apiHelper: ApiHelper) {
                                 val time1 = measureTimeMillis {
                                     val results = async {
                                         when (apiBean.requestTypeMoreDetail) {
-                                            RequestTypeMoreDetail.GET_CALL_SIMPLE -> {
+                                            RequestTypeMoreDetail.GetRequestType.GET_CALL_SIMPLE -> {
                                                 apiHelper.getApiCall()
                                             }
-                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT -> {
+                                            RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT -> {
                                                 apiHelper.getApiCallWithEndPont(apiBean = apiBean)
 
                                             }
-                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP -> {
+                                            RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP -> {
                                                 apiHelper.getApiCallWithEndPointNQueryMap(apiBean)
 
 
                                             }
-                                            RequestTypeMoreDetail.GET_CALL_ONLY_QUERYMAP -> {
+                                            RequestTypeMoreDetail.GetRequestType.GET_CALL_ONLY_QUERYMAP -> {
                                                 apiHelper.getApiCallOnlyWithQueryMap(apiBean)
                                             }
-                                         RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_PATH -> {
+                                         RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT_WITH_PATH -> {
                                                 apiHelper.getApiCallWithEndPointNPath(apiBean)
                                             }
 
-                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSON -> TODO()
-                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP -> TODO()
+                                            else -> {apiHelper.getApiCallWithEndPont(apiBean)}
                                         }
 
                                     }
@@ -63,20 +62,15 @@ class MainRepository(private val apiHelper: ApiHelper) {
                                 val time1 = measureTimeMillis {
                                     val results = async {
                                         when (apiBean.requestTypeMoreDetail) {
-                                            RequestTypeMoreDetail.GET_CALL_SIMPLE -> TODO()
-                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT ->TODO()
-                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP ->TODO()
-                                            RequestTypeMoreDetail.GET_CALL_ONLY_QUERYMAP -> TODO()
-                                            RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_PATH -> TODO()
-
-                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSON ->
+                                            RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSON ->
                                             {
                                                 apiHelper.postApiCallWithEndPontNJsonBody(apiBean)
                                             }
-                                            RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP ->
+                                            RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP ->
                                             {
                                                 apiHelper.postApiCallWithEndPontNFieldMap(apiBean)
                                             }
+                                            else -> {apiHelper.postApiCallWithEndPont(apiBean)}
                                         }
 
                                     }

@@ -18,20 +18,23 @@ object RetrofitBuilder {
             .addConverterFactory(GsonConverterFactory.create())
             .also {
                 if (headers != null)
-                    it.client(addIntercepterandHeader(headers = Headers.headersOf(
-                           headers!!
+                    it.client(
+                        addIntercepterAndHeader(
+                            headers = Headers.headersOf(
+                                headers!!
+                            )
                         )
-                    ))
+                    )
             }
             .build()
     }
 
-    fun setHeader(headers:String) {
+    fun setHeader(headers: String) {
         this.headers = headers
     }
 
-    private fun addIntercepterandHeader(headers: Headers): OkHttpClient {
-        // Define the interceptor, add authentication headers
+    // Define the interceptor, add authentication headers
+    private fun addIntercepterAndHeader(headers: Headers): OkHttpClient {
         val interceptor = Interceptor { chain ->
             val newRequest: Request =
                 chain.request().newBuilder()
@@ -47,10 +50,7 @@ object RetrofitBuilder {
 
     }
 
-    private var headers:String? = null
-
-
-
+    private var headers: String? = null
     val apiService: ApiService = getRetrofit().create(ApiService::class.java)
 
 }

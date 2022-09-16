@@ -5,49 +5,36 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.hcl.concurrentapicalls.api.ApiBean
 import com.hcl.concurrentapicalls.api.ApiHelper
 import com.hcl.concurrentapicalls.api.BASE_URL
 import com.hcl.concurrentapicalls.api.RetrofitBuilder
+import com.hcl.concurrentapicalls.base.ViewModelFactory
 import com.hcl.concurrentapicalls.utils.ApiResponse
 import com.hcl.concurrentapicalls.utils.RequestKey
 import com.hcl.concurrentapicalls.utils.RequestType
 import com.hcl.concurrentapicalls.utils.RequestTypeMoreDetail
+import com.hcl.concurrentapicalls.viewmodel.MainViewModel
 import com.hcl.retrofit.coroutines.R
-import com.hcl.retrofit.coroutines.data.model.User
-import com.hcl.retrofit.coroutines.ui.base.ViewModelFactory
-import com.hcl.retrofit.coroutines.ui.main.adapter.MainAdapter
-import com.hcl.retrofit.coroutines.ui.main.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
 
 class MainActivity : AppCompatActivity(), ApiResponse {
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupViewModel()
-        setupUI()
         setupObservers()
     }
 
 
     private fun setupViewModel() {
-        BASE_URL = "https://6319f70d8e51a64d2bf1e612.mockapi.io/"  //Add Base URL
-        //BASE_URL = "https://reqres.in/"  //Add Base URL
+        addBaseUrl()    //Add Base URL
+        addHeaders()   //Add Headers If Require
 
-        //Add Headers if require
-        val headerMap= "Accept: application/json\n" +
-               "User-Agent: Your-App-Name\n" +
-               "Cache-Control: max-age=640000"
-        //RetrofitBuilder.setHeader(headerMap)
 
         //Initializing retrofit ViewModel
         viewModel = ViewModelProvider(
@@ -57,59 +44,63 @@ class MainActivity : AppCompatActivity(), ApiResponse {
 
     }
 
-    private fun setupUI() {
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = MainAdapter(arrayListOf())
-        recyclerView.addItemDecoration(
-            DividerItemDecoration(
-                recyclerView.context,
-                (recyclerView.layoutManager as LinearLayoutManager).orientation
-            )
-        )
-        recyclerView.adapter = adapter
+
+    /*--------- Setting Base URL----------*/
+    private fun addBaseUrl() {
+        BASE_URL = "https://6319f70d8e51a64d2bf1e612.mockapi.io/"
+        //BASE_URL = "https://reqres.in/"
     }
 
+    /*--------- Setting Headers----------*/
+    private fun addHeaders() {
+        //Add Headers if require
+        val headerMap = "Accept: application/json\n" +
+                "User-Agent: Your-App-Name\n" +
+                "Cache-Control: max-age=640000"
+        RetrofitBuilder.setHeader(headerMap)
+    }
 
     @SuppressLint("NewApi")
     private fun setupObservers() {
-
         val apiMap = mutableMapOf<RequestKey, ApiBean>()  //List of Request Api's concurrently
 
-        //Get Api which need only endPoint if is not then we can pass empty as well
+
+        //Getting users list, GET Api which need only endPoint if is not then we can pass empty as well
         apiMap[RequestKey.REQUEST_FIRST] = ApiBean(
             requestType = RequestType.GET,
-            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT,
             endPoint = "users",
             url = null,
-            requesPathString = null,
-            queryParam = null,
+            requestPathString = null,
+            paramMap = null,
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
         )
+        /*Data class (ApiBean) used to get the basic info about api and its parameters*/
 
 
-        //Get Api with different endPoint if is not then we can pass empty as well
+        //Getting blogs list, Get Api with different endPoint if is not then we can pass empty as well
         apiMap[RequestKey.REQUEST_SECOND] = ApiBean(
             requestType = RequestType.GET,
-            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT,
             endPoint = "blogs",
             url = null,
-            requesPathString = null,
-            queryParam = null,
+            requestPathString = null,
+            paramMap = null,
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
         )
 
-        //Get Api which needs endPoint and path string
+        //Getting User which have id 1,GET Api which needs endPoint and path string
         apiMap[RequestKey.REQUEST_THIRD] = ApiBean(
             requestType = RequestType.GET,
-            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_PATH,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT_WITH_PATH,
             endPoint = "users",
             url = null,
-            requesPathString = "1",
-            queryParam = null,
+            requestPathString = "1",
+            paramMap = null,
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
@@ -119,11 +110,11 @@ class MainActivity : AppCompatActivity(), ApiResponse {
         val queryMap = mapOf("page" to "1", "limit" to "10")
         apiMap[RequestKey.REQUEST_FOURTH] = ApiBean(
             requestType = RequestType.GET,
-            requestTypeMoreDetail = RequestTypeMoreDetail.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP,
+            requestTypeMoreDetail = RequestTypeMoreDetail.GetRequestType.GET_CALL_WITH_ENDPOINT_WITH_QUERYMAP,
             endPoint = "users",
             url = null,
-            requesPathString = null,
-            queryParam = queryMap,
+            requestPathString = null,
+            paramMap = queryMap,
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
@@ -136,11 +127,11 @@ class MainActivity : AppCompatActivity(), ApiResponse {
 
         apiMap[RequestKey.REQUEST_FIFTH] = ApiBean(
             requestType = RequestType.POST,
-            requestTypeMoreDetail = RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_JSON,
+            requestTypeMoreDetail = RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSON,
             endPoint = "https://reqres.in/api/users",
             url = null,
-            requesPathString = null,
-            queryParam = null,
+            requestPathString = null,
+            paramMap = null,
             bodyJsonObject = jsonObject,
             bodyJsonArray = null,
             resultOfApi = null
@@ -149,106 +140,59 @@ class MainActivity : AppCompatActivity(), ApiResponse {
         jsonObject2.addProperty("email", "eve.holt@reqres.in")
         //jsonObject2.addProperty("password", "pistol")
         val fieldMap = mapOf("email" to "eve.holt@reqres.in", "password" to "pistol")
- apiMap[RequestKey.REQUEST_SIX] = ApiBean(
+        apiMap[RequestKey.REQUEST_SIX] = ApiBean(
             requestType = RequestType.POST,
-            requestTypeMoreDetail = RequestTypeMoreDetail.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP,
+            requestTypeMoreDetail = RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP,
             endPoint = "https://reqres.in/api/register",
             url = null,
-            requesPathString = null,
-            queryParam = fieldMap,
+            requestPathString = null,
+            paramMap = fieldMap,
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
         )
 
-
-               viewModel.doMultipleAPICalls(apiMap)
-        /* .observe(this, Observer {
-         it?.let { resource ->
-             when (resource.status) {
-                 SUCCESS -> {
-                     recyclerView.visibility = View.VISIBLE
-                     progressBar.visibility = View.GONE
-                     resource.data?.let { users ->
-                         retrieveList(users)
-                     }
-                 }
-                 ERROR -> {
-                     recyclerView.visibility = View.VISIBLE
-                     progressBar.visibility = View.GONE
-                     Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                 }
-                 LOADING -> {
-                     progressBar.visibility = View.VISIBLE
-                     recyclerView.visibility = View.GONE
-                 }
-             }
-         }
-     })*/
-
-        /* viewModel.getUsers().observe(this, Observer {
-             it?.let { resource ->
-                when (resource.status) {
-                     SUCCESS -> {
-                         recyclerView.visibility = View.VISIBLE
-                         progressBar.visibility = View.GONE
-                         resource.data?.let { users  -> retrieveList(users ) }
-                     }
-                     ERROR -> {
-                         recyclerView.visibility = View.VISIBLE
-                         progressBar.visibility = View.GONE
-                         Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-                     }
-                     LOADING -> {
-                         progressBar.visibility = View.VISIBLE
-                         recyclerView.visibility = View.GONE
-                     }
-                 }
-             }
-         })*/
+        viewModel.doMultipleAPICalls(apiMap)
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun retrieveList(listWithResponse: Map<RequestKey, ApiBean>) {
-        val data = toRpcResult(listWithResponse[RequestKey.REQUEST_SIX]?.resultOfApi)
-        /*if (data != null && data is List<*>) {
-            jsonData.visibility = View.GONE
-            recyclerView.visibility = View.VISIBLE
 
-            adapter.apply {
-                addUsers(data as List<User>)
-                notifyDataSetChanged()
-            }
+        // To parsing data we can use toJsonParsing() function
 
-        } else {*/
-            jsonData.visibility = View.VISIBLE
-            recyclerView.visibility = View.GONE
-            jsonData.text = data.toString()
-       // }
+        val data =
+            listWithResponse[RequestKey.REQUEST_SIX]?.resultOfApi  // getting json data in response
+
+        jsonData.visibility = View.VISIBLE
+        jsonData.text = data.toString()
     }
 
-    private fun toRpcResult(json: JsonElement?): JsonElement? {
-        /* try {
-            val collectionType: Type = object : TypeToken<List<User?>?>() {}.type
-             return  Gson().fromJson(json, collectionType)
-        } catch (e:Exception) {
-            e.printStackTrace()
-            //json
-        }*/
-        return json
-    }
+    //Provide data class in place of MODEL_CLASS
+    /* private fun toJsonParsing(json: JsonElement?): List<MODEL_CLASS?>? {
+         return try {
+             val collectionType: Type = object : TypeToken<List<MODEL_CLASS?>?>() {}.type
+             Gson().fromJson(json, collectionType)
+         } catch (e:Exception) {
+             e.printStackTrace()
+              null
+         }
+     }*/
 
+
+    /*---------Combine Result of All Api's----------*/
     override fun onSuccessApiResult(listWithResponse: Map<RequestKey, ApiBean>) {
         recyclerView.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
         retrieveList(listWithResponse)
     }
 
+    /*---------Error Result of All Api's----------*/
     override fun onErrorApiResult() {
         recyclerView.visibility = View.VISIBLE
         progressBar.visibility = View.GONE
     }
 
+    /*---------Loading/Progressing of All Api's----------*/
     override fun onLoadingApiResult() {
         progressBar.visibility = View.VISIBLE
         recyclerView.visibility = View.GONE
