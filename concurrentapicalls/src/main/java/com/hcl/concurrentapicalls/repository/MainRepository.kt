@@ -12,8 +12,6 @@ import kotlin.system.measureTimeMillis
 
 class MainRepository(private val apiHelper: ApiHelper) {
 
-    // suspend fun getUsers() = apiHelper.getUsers()
-
     suspend fun returnApiResults(
         apiCallList: Map<RequestKey, ApiBean>,
         result: (resultOfCalls: Map<RequestKey, ApiBean>) -> Unit
@@ -81,9 +79,6 @@ class MainRepository(private val apiHelper: ApiHelper) {
 
                             }
                             RequestType.PUT -> {
-
-                            }
-                            RequestType.MULTIPART -> {
 
                             }
                         }

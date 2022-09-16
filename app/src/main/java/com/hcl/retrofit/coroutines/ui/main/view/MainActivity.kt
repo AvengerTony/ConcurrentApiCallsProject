@@ -136,11 +136,9 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             bodyJsonArray = null,
             resultOfApi = null
         )
-        val jsonObject2 = JsonObject()
-        jsonObject2.addProperty("email", "eve.holt@reqres.in")
-        //jsonObject2.addProperty("password", "pistol")
+
         val fieldMap = mapOf("email" to "eve.holt@reqres.in", "password" to "pistol")
-        apiMap[RequestKey.REQUEST_SIX] = ApiBean(
+      /*  apiMap[RequestKey.REQUEST_SIX] = ApiBean(
             requestType = RequestType.POST,
             requestTypeMoreDetail = RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP,
             endPoint = "https://reqres.in/api/register",
@@ -150,7 +148,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
-        )
+        )*/
 
         viewModel.doMultipleAPICalls(apiMap)
     }

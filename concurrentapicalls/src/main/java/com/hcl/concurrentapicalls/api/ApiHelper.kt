@@ -29,7 +29,8 @@ class ApiHelper(private val apiService: ApiService) {
         apiService.postApiCallWithEndPont(
             endPoint = apiBean.endPoint!!
         )
- suspend fun postApiCallWithEndPontNJsonBody(apiBean: ApiBean) =
+
+    suspend fun postApiCallWithEndPontNJsonBody(apiBean: ApiBean) =
         apiService.postApiCallWithEndPontNJsonBody(
             endPoint = apiBean.endPoint!!,
             body = apiBean.bodyJsonObject!! as JsonElement

@@ -33,7 +33,8 @@ interface ApiService {
     suspend fun postApiCallWithEndPont(
         @Url endPoint: String,
     ): JsonElement
-  @POST
+
+    @POST
     suspend fun postApiCallWithEndPontNJsonBody(
         @Url endPoint: String,
         @Body body: JsonElement?
