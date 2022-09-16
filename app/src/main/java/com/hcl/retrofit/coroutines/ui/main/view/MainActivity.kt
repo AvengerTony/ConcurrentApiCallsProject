@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             resultOfApi = null
         )
 
-        //Get Api which needs endPoint and query parameters
+        //Get Api which needs endPoint and query parameters to get pagination results
         val queryMap = mapOf("page" to "1", "limit" to "10")
         apiMap[RequestKey.REQUEST_FOURTH] = ApiBean(
             requestType = RequestType.GET,
@@ -121,13 +121,14 @@ class MainActivity : AppCompatActivity(), ApiResponse {
         )
 
 
+        // Post Api call with endpoint and json object body to create user and get result in json format.
         val jsonObject = JsonObject()
         jsonObject.addProperty("name", "Vinay")
         jsonObject.addProperty("job", "engineer")
 
         apiMap[RequestKey.REQUEST_FIFTH] = ApiBean(
             requestType = RequestType.POST,
-            requestTypeMoreDetail = RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSON,
+            requestTypeMoreDetail = RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT,
             endPoint = "https://reqres.in/api/users",
             url = null,
             requestPathString = null,
@@ -137,8 +138,12 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             resultOfApi = null
         )
 
+
+        /*-------- Post Api call with complete different url endpoint and fieldMap parameters to register user and get result in json format.
+        Note:- endpoint parameter can handles full address url also.
+        -----*/
         val fieldMap = mapOf("email" to "eve.holt@reqres.in", "password" to "pistol")
-      /*  apiMap[RequestKey.REQUEST_SIX] = ApiBean(
+        apiMap[RequestKey.REQUEST_SIX] = ApiBean(
             requestType = RequestType.POST,
             requestTypeMoreDetail = RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP,
             endPoint = "https://reqres.in/api/register",
@@ -148,18 +153,37 @@ class MainActivity : AppCompatActivity(), ApiResponse {
             bodyJsonObject = null,
             bodyJsonArray = null,
             resultOfApi = null
-        )*/
+        )
+
+
+        /*-------- Put Api call with complete different url endpoint and body parameters to update user and get result in json format.
+       Note:- endpoint parameter can handles full address url also.
+       -----*/
+        val jsonObject2 = JsonObject()
+        jsonObject2.addProperty("name", "Nicole")
+        jsonObject2.addProperty("job", "iOS Developer")
+
+        apiMap[RequestKey.REQUEST_SEVENTH] = ApiBean(
+            requestType = RequestType.PUT,
+            requestTypeMoreDetail = RequestTypeMoreDetail.PutRequestType.PUT_CALL_WITH_ENDPOINT_WITH_JSONOBJECT,
+            endPoint = "https://reqres.in/api/update/2",
+            url = null,
+            requestPathString = null,
+            paramMap = null,
+            bodyJsonObject = jsonObject2,
+            bodyJsonArray = null,
+            resultOfApi = null
+        )
 
         viewModel.doMultipleAPICalls(apiMap)
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun retrieveList(listWithResponse: Map<RequestKey, ApiBean>) {
+        // To parsing the data we can use toJsonParsing() function, function is commented
 
-        // To parsing data we can use toJsonParsing() function
-
+        /*We can change the key and get the result on display*/
         val data =
-            listWithResponse[RequestKey.REQUEST_SIX]?.resultOfApi  // getting json data in response
+            listWithResponse[RequestKey.REQUEST_SEVENTH]?.resultOfApi  // getting json data in response
 
         jsonData.visibility = View.VISIBLE
         jsonData.text = data.toString()

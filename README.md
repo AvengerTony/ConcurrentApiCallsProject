@@ -1,2 +1,2 @@
 # ConcurrentApiCallsProject
-Concurrent Api Calls in ANdroid+kotlin+MVVM+Retrofit2
+Concurrent Api Calls in Android+kotlin+MVVM+Retrofit2

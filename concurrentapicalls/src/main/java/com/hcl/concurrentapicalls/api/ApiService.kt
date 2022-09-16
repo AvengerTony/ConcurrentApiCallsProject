@@ -1,6 +1,7 @@
 package com.hcl.concurrentapicalls.api
 
 import com.google.gson.JsonElement
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.util.*
@@ -47,11 +48,17 @@ interface ApiService {
         @FieldMap fieldMap: Map<String, String>
     ): JsonElement
 
+    @PUT
+    suspend fun putApiCallWithEndPontNJsonObjectBody(
+        @Url endPoint: String,
+        @Body requestBody: JsonElement
+    ): JsonElement
 
-    @Headers("Content-Type: application/json")
-    @POST("users")
-    fun addUser(@Body userData: Objects): Call<Objects>
+ @PUT
+    suspend fun putApiCallWithEndPontNJsonArrayBody(
+        @Url endPoint: String,
+        @Body requestBody: JsonElement
+    ): JsonElement
 
-    //@GET
-    //suspend fun getApiCallWithID(@Url endPoint:String, @Path("id") id: String): Any
+
 }

@@ -10,7 +10,11 @@ enum class RequestTypeMoreDetail {
         GET_CALL_WITH_ENDPOINT_WITH_PATH
     }
     enum class PostRequestType {
-        POST_CALL_WITH_ENDPOINT_WITH_JSON,
+        POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT,
+        POST_CALL_WITH_ENDPOINT_WITH_JSONARRAY,
         POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP
+    }
+   enum class PutRequestType {
+       PUT_CALL_WITH_ENDPOINT_WITH_JSONOBJECT,
     }
 }

@@ -60,9 +60,13 @@ class MainRepository(private val apiHelper: ApiHelper) {
                                 val time1 = measureTimeMillis {
                                     val results = async {
                                         when (apiBean.requestTypeMoreDetail) {
-                                            RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSON ->
+                                            RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSONOBJECT ->
                                             {
-                                                apiHelper.postApiCallWithEndPontNJsonBody(apiBean)
+                                                apiHelper.postApiCallWithEndPontNJsonObjectBody(apiBean)
+                                            }
+                                            RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_JSONARRAY ->
+                                            {
+                                                apiHelper.postApiCallWithEndPontNJsonArrayBody(apiBean)
                                             }
                                             RequestTypeMoreDetail.PostRequestType.POST_CALL_WITH_ENDPOINT_WITH_FIELDMAP ->
                                             {
@@ -79,6 +83,23 @@ class MainRepository(private val apiHelper: ApiHelper) {
 
                             }
                             RequestType.PUT -> {
+                                val time1 = measureTimeMillis {
+                                    val results = async {
+                                        when (apiBean.requestTypeMoreDetail) {
+                                            RequestTypeMoreDetail.PutRequestType.PUT_CALL_WITH_ENDPOINT_WITH_JSONOBJECT ->
+                                            {
+                                                apiHelper.putApiCallWithEndPontNJsonObjectBody(apiBean)
+                                            }
+                                             else -> {
+                                                 apiHelper.putApiCallWithEndPontNJsonObjectBody(apiBean)
+                                             }
+                                        }
+
+                                    }
+                                    response[key] = results
+                                }
+
+                                println("debug: compeleted job$key in $time1 ms." + Thread.currentThread().name)
 
                             }
                         }

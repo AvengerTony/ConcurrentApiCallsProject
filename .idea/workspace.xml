@@ -14,7 +14,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47e156a5-f97a-4c37-b6c6-26769d908e71" name="Changes" comment="new code updated">
+    <list default="true" id="47e156a5-f97a-4c37-b6c6-26769d908e71" name="Changes" comment="latest updated">
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -23,17 +23,16 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/app/ConcurrentApiCallsProject.app.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/app/ConcurrentApiCallsProject.app.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/concurrentapicalls/ConcurrentApiCallsProject.concurrentapicalls.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/concurrentapicalls/ConcurrentApiCallsProject.concurrentapicalls.main.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/hcl/retrofit/coroutines/ui/main/view/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/hcl/retrofit/coroutines/ui/main/view/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/retofit-coroutines-package-structure.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/retrofit-coroutines-suspend.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/retrofit-kotlin-coroutines-banner.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/api/ApiHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/api/ApiHelper.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/api/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/api/ApiService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/repository/MainRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/repository/MainRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/utils/RequestType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/utils/RequestType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/utils/Resource.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/utils/Status.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/viewmodel/MainViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/viewmodel/MainViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/utils/RequestTypeMoreDetail.kt" beforeDir="false" afterPath="$PROJECT_DIR$/concurrentapicalls/src/main/java/com/hcl/concurrentapicalls/utils/RequestTypeMoreDetail.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663317086727</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="latest updated">
+      <created>1663319079866</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1663319079866</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -248,24 +254,25 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="latest code updated" />
     <MESSAGE value="new code updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="new code updated" />
+    <MESSAGE value="latest updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="latest updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/hcl/retrofit/coroutines/ui/main/view/MainActivity.kt</url>
-          <line>179</line>
+          <line>203</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/hcl/retrofit/coroutines/ui/main/view/MainActivity.kt</url>
-          <line>186</line>
+          <line>210</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/hcl/retrofit/coroutines/ui/main/view/MainActivity.kt</url>
-          <line>185</line>
+          <line>209</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

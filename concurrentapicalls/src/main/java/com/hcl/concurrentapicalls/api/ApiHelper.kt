@@ -30,16 +30,32 @@ class ApiHelper(private val apiService: ApiService) {
             endPoint = apiBean.endPoint!!
         )
 
-    suspend fun postApiCallWithEndPontNJsonBody(apiBean: ApiBean) =
+    suspend fun postApiCallWithEndPontNJsonObjectBody(apiBean: ApiBean) =
         apiService.postApiCallWithEndPontNJsonBody(
             endPoint = apiBean.endPoint!!,
             body = apiBean.bodyJsonObject!! as JsonElement
+        )
+
+   suspend fun postApiCallWithEndPontNJsonArrayBody(apiBean: ApiBean) =
+        apiService.postApiCallWithEndPontNJsonBody(
+            endPoint = apiBean.endPoint!!,
+            body = apiBean.bodyJsonArray!! as JsonElement
         )
 
     suspend fun postApiCallWithEndPontNFieldMap(apiBean: ApiBean) =
         apiService.postApiCallWithEndPontNFieldMap(
             endPoint = apiBean.endPoint!!,
             fieldMap = apiBean.paramMap!!
+        )
+  suspend fun putApiCallWithEndPontNJsonObjectBody(apiBean: ApiBean) =
+        apiService.putApiCallWithEndPontNJsonObjectBody(
+            endPoint = apiBean.endPoint!!,
+            requestBody = apiBean.bodyJsonObject!! as JsonElement
+        )
+suspend fun putApiCallWithEndPontNJsonArrayBody(apiBean: ApiBean) =
+        apiService.putApiCallWithEndPontNJsonArrayBody(
+            endPoint = apiBean.endPoint!!,
+            requestBody = apiBean.bodyJsonArray!! as JsonElement
         )
 
 }
